@@ -25,3 +25,23 @@ def display_board(board)
   puts '----------'
   puts "#{board[6]} | #{board[7]} | #{board[8]}"
 end
+
+def valid_move?(board, index)
+  index.between?(0, 8) && !position_taken?(board, index)
+end
+
+def won?(board)
+  WIN_COMBINATIONS.detect do |combo|
+    board[combo[0]] == board[combo[1]] &&
+      board[combo[1]] == board[combo[2]] &&
+      position_taken?(board, combo[0])
+  end
+end
+
+def full?(board)
+  board.all? { |token| token == 'X' || token == 'O' }
+end
+
+def draw?(board)
+  !won?(board) && full?(board)
+end
