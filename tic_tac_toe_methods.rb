@@ -9,3 +9,19 @@ WIN_COMBINATIONS = [
   [6, 4, 2]
 ].freeze
 
+def play(board)
+  turn(board) until over?(board)
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "It's a draw!"
+  end
+end
+
+def display_board(board)
+  puts "#{board[0]} | #{board[1]} | #{board[2]}"
+  puts '----------'
+  puts "#{board[3]} | #{board[4]} | #{board[5]}"
+  puts '----------'
+  puts "#{board[6]} | #{board[7]} | #{board[8]}"
+end
